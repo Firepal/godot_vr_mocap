@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://setup/setup2d.tscn" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 80, 80 )
+
+[node name="setup" parent="Viewport" instance=ExtResource( 1 )]
