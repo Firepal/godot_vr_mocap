@@ -1,14 +1,68 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0.219608 )
+corner_detail = 1
+anti_aliasing = false
 
 [node name="setup" type="Control"]
+margin_right = 128.0
+margin_bottom = 256.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 128.0
+margin_bottom = 256.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="questfps" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = -256.0
-margin_bottom = 212.0
+margin_left = -54.5518
+margin_top = -47.0733
+margin_right = 55.4482
+margin_bottom = 16.9267
+
+[node name="Label" type="Label" parent="questfps"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_top = 8.91907
+margin_right = 40.0
+margin_bottom = 22.9191
+text = "Framerate:"
+align = 1
+
+[node name="OptionButton" type="OptionButton" parent="questfps"]
+anchor_left = 0.5
+anchor_top = 0.391
+anchor_right = 0.5
+anchor_bottom = 0.391
+margin_left = -33.2971
+margin_top = -0.0240021
+margin_right = 42.7029
+margin_bottom = 19.976
+button_mask = 0
+text = "60hz"
+items = [ "60hz", null, false, 0, null, "72hz", null, false, 1, null, "90hz", null, false, 2, null ]
+selected = 0
+
+[node name="Button" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 200.0
+margin_right = 109.0
+margin_bottom = 237.0
+text = "Start capture"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="points_recorded" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 119.0
+margin_bottom = 80.0

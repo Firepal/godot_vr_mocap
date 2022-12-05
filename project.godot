@@ -8,34 +8,63 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "BVHWriter",
+"language": "GDScript",
+"path": "res://bvh_writer.gd"
+}, {
+"base": "Reference",
+"class": "ImmediateSurface",
+"language": "GDScript",
+"path": "res://addons/godot-polyliner/LineGen3D/ImmediateSurface.gd"
+}, {
+"base": "Resource",
+"class": "LineGen3D",
+"language": "GDScript",
+"path": "res://addons/godot-polyliner/LineGen3D/LineGen3D.gd"
+}, {
+"base": "RigidBody",
+"class": "Rope3D",
+"language": "GDScript",
+"path": "res://addons/godot-polyliner/demos/ropetesting/Rope3D.gd"
+} ]
+_global_script_class_icons={
+"BVHWriter": "",
+"ImmediateSurface": "",
+"LineGen3D": "",
+"Rope3D": ""
+}
+
 [application]
 
 config/name="godot_vr_mocap"
 run/main_scene="res://Spatial.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-openxr/plugin.cfg", "res://addons/godot-polyliner/plugin.cfg" )
+
 [gdnative]
 
-singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib", "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib", "res://addons/godot-openxr/config/godot_openxr.gdnlib", "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
+singletons_disabled=[ "res://addons/godot-openvr/godot_openvr.gdnlib", "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
 
 [physics]
 
+common/physics_jitter_fix=0.1
 common/enable_pause_aware_picking=true
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/intended_usage/framebuffer_allocation=3
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-quality/directional_shadow/size=2048
 quality/shadow_atlas/size=2048
-quality/shadow_atlas/quadrant_1_subdiv=1
-quality/shadow_atlas/quadrant_2_subdiv=1
-quality/shadow_atlas/quadrant_3_subdiv=1
-quality/shadows/filter_mode=2
-quality/shadows/filter_mode.mobile=2
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
-quality/filters/msaa=6
+quality/shading/force_vertex_shading.mobile=false
+quality/shading/force_lambert_over_burley.mobile=false
+quality/shading/force_blinn_over_ggx.mobile=false
 environment/default_environment="res://default_env.tres"

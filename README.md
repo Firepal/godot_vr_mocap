@@ -1,3 +1,4 @@
-# Godot VR Mocap project
+# Godot VR Mocap 
+Tracks head and hands. Serializes the animation data to Blender's mocap format ".bvh".
 
-Project with the goal to record VR tracker data for 3D animations with Godot.
+Tested on SteamVR. Untested on native Quest 2 (or other standalone).

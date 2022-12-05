@@ -1,10 +1,53 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://setup/setup2d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://setup/setup.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D tex;
+void fragment(){
+	vec4 sample = texture(tex,UV);
+	ALBEDO = sample.rgb;
+	ALPHA = sample.a;
+}"
+
+[sub_resource type="ViewportTexture" id=6]
+flags = 4
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 4 )
+shader_param/tex = SubResource( 6 )
+
+[sub_resource type="QuadMesh" id=3]
+resource_local_to_scene = true
+material = SubResource( 5 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.5, 0.5, 0.001 )
 
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 80, 80 )
+size = Vector2( 128, 256 )
+transparent_bg = true
+usage = 0
+render_target_update_mode = 3
 
 [node name="setup" parent="Viewport" instance=ExtResource( 1 )]
+mouse_filter = 2
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -2, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="." groups=["ui"]]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 7 )
